@@ -9,20 +9,24 @@
 <table border="1" width="100%" bgcolor="#FFFF00">
 <thead> <th>Srno</th> <th>Name</th> <th>Roll Number </th>
 <th> Course </th><th>Contact </th> </thead>
+
 <tbody>
 <tr>
 <td> 1</td><td> Abhinav</td><td> 90812121</td><td> Btech</td>
 <td>980815644</td>
 </tr>
+
 <tr>
 <td> 2</td><td> Abhinav</td><td> 90812121</td><td> Btech</td>
 <td>980815644</td>
 </tr>
+
 <tr>
 <td> 3</td><td> Abhinav</td><td colspan="2"> 90812121 Btech</td>
 <td>980815644</td>
 </tr>
 </tbody>
+
 </table>
 </body>
 </html>
