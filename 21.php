@@ -3,8 +3,20 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Untitled Document</title>
-<script language="javascript1.5">
-alert('Hello');
+<script>
+var age=parseInt(window.prompt('Enter Your Age'));
+
+if(age > 20 && age<30)
+	{
+window.location.href='pageone.php';
+	}
+else if(age > 30 && age <50)
+	{
+window.location.href='pagetwo.php';
+	}
+else {
+document.write(age);	
+}
 </script>
 </head>
 <body>

@@ -4,9 +4,22 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Untitled Document</title>
 <script language="javascript1.5">
-alert('Hello');
+document.write('<strong>Hello</strong> ');
+function f1()
+{
+alert('Connection Created');	
+}
+function f2()
+{
+alert('Mouse Upar Aa Gaya');	
+}
 </script>
 </head>
 <body>
+<form method="post">
+<input type="text" onblur="f1()" />
+</form>
+
+<a href="#" onmouseover="f2()"> Contact Us</a>
 </body>
 </html>
