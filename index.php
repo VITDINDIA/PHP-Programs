@@ -99,7 +99,20 @@ var duration=parseInt(document.getElementById('duration').value);
 var total=pa +(pa*10*duration)/100;
 document.getElementById('ta').value=total;
 }
-
+function f2()
+	{	
+var val=document.getElementById('uname').value;
+var data=val.toUpperCase();	
+document.getElementById('uname').value=data;	
+	}
+function f3()
+	{	
+if(isNaN(document.getElementById('contact').value))
+		{
+alert('Contact Number should be a numeric value only ');	
+		}
+//document.getElementById('uname').value=data;	
+	}	
 </script>
 </head>
 <body>
@@ -141,9 +154,9 @@ Site's Menu
 
 <div class="rightcontent">
 <form method="POST">
-<div class="frontform"><input type="text" name="uname" placeholder="Your Name" required="required"  /></div>
+<div class="frontform"><input type="text" name="uname" id="uname" placeholder="Your Name" required="required" onkeyup="f2()"  /></div>
 <div class="frontform"><input type="email" name="uemail" placeholder="Your Email" required="required"  /></div>
-<div class="frontform"><input type="text" name="contact" placeholder="Your Contact" maxlength="10" required="required"  /></div>
+<div class="frontform"><input type="text" name="contact" id="contact" placeholder="Your Contact" maxlength="10" onkeyup="f3()" required="required"  /></div>
 <div class="frontform">Male: <input type="radio" name="gender" value="male" /> |
 Fe-Male: <input type="radio" name="gender" value="female" /></div>
 <div class="frontform">Tech. Prob.<input type="checkbox" value="techproblem" name="techproblem" /> |
@@ -179,4 +192,4 @@ Other<input type="checkbox" name="other" value="other" />
 </div>
 
 </body>
-</html>lkasmdkl
+</html>
