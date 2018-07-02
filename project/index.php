@@ -1,4 +1,8 @@
 <?php
+include('classes/database.php');
+print $database->uname;
+
+
 if(isset($_POST['submit']))
 	{
 $uname=$_POST['usr'];$email=$_POST['email'];	
