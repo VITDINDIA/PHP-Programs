@@ -2,16 +2,9 @@
 if(isset($_POST['submit']))
 	{
 $uname=$_POST['usr'];$email=$_POST['email'];	
-$password=$_POST['password'];	$uname=$_POST['usr'];	
+$password=$_POST['password'];	
 $city=$_POST['city'];		
 
-print $uname;
-echo"<br/>";
-print $password;
-echo"<br/>";
-print $email;
-echo"<br/>";
-print $city;
 	}
 ?>
 <!DOCTYPE html>
