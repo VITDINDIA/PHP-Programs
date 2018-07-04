@@ -1,10 +1,19 @@
 <?php
-$con=mysqli_connect("localhost","root","","parking");
+include('classes/database.php');
+$database->connect_database();
+if(isset($_POST['submit']))
+	{
+$database->uname=$_POST['usr'];$database->email=$_POST['email'];	
+$database->password=$_POST['password'];	
+$database->city=$_POST['city'];$database->contact=$_POST['contact'];
+mysqli_query( $database->con,"insert into `users`(`uname`,`contact`,`email`,`password`,`city`) values ('".$database->uname."','".$database->contact."','".$database->email."','".$database->password."','".$database->city."')"); 		
+echo"<script>alert('Registration Successfully');</script>";
+	}
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>PARKING MANAGEMENT </title>
+  <title>Bootstrap Example</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -40,18 +49,17 @@ $con=mysqli_connect("localhost","root","","parking");
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#" style="color:gold">CAR PARKING MANAGEMENT SYSTEM</a>
+      <a class="navbar-brand" href="#">Smart Learning</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#" style="color:white">Home</a></li>
-        <li class="active"><a href="#" style="color:white">About Us</a></li>
-        <li class="active"><a href="#" style="color:white">Services</a></li>
-        <li class="active"><a href="#" style="color:white">Contact Us</a></li>
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Courses</a></li>
+        <li><a href="#">Trainers</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-	    <li><a href="#" data-toggle="modal" data-target="#myModal"><span style="color:blue" class="glyphicon glyphicon-user" ></span> Registration</a></li>
-        <li><a href="#" data-toggle="modal" data-target="#myModal1" ><span style="color:blue" class="glyphicon glyphicon-log-in" ></span> Login</a></li>
+        <li><a href="#" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
       </ul>
     </div>
   </div>
@@ -65,31 +73,31 @@ $con=mysqli_connect("localhost","root","","parking");
       <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
         <li data-target="#myCarousel" data-slide-to="1"></li>
-		<li data-target="#myCarousel" data-slide-to="2"></li>
       </ol>
 
       <!-- Wrapper for slides -->
-      <div class="carousel-inner" role="listbox" >
+      <div class="carousel-inner" role="listbox">
         <div class="item active">
-          <img src="image/8.jpg" alt="Image">
+          <img src="img/1.jpg" alt="Image">
           <div class="carousel-caption">
-            <h3> PARKING MANAGEMENT SYSTEM</h3>
-            <p>FOR CARS</p>
+            <h3>Sell $</h3>
+            <p>Money Money.</p>
           </div>      
         </div>
 
         <div class="item">
-          <img src="image/5.jpg" alt="Image">
+          <img src="img/2.jpg" alt="Image">
           <div class="carousel-caption">
-            <h3>BOOK CAR PARKING SPOT</h3>
-            <p>ONLINE BOOKING...</p>
+            <h3>More Sell $</h3>
+            <p>Lorem ipsum...</p>
           </div>      
         </div>
-		
-		<div class="item">
-          <img src="image/4.jpg" alt="Image">
+        
+        <div class="item">
+          <img src="img/3.jpeg" alt="Image">
           <div class="carousel-caption">
-            <h3> SAFE PARKING </h3>
+            <h3>More Sell $</h3>
+            <p>Lorem ipsum...</p>
           </div>      
         </div>
       </div>
@@ -105,56 +113,54 @@ $con=mysqli_connect("localhost","root","","parking");
       </a>
     </div>
   </div>
-  <?php
-  if(isset($_POST['submit']))
-  {
- $name=$_POST['name'];$email=$_POST['email'];$contact=$_POST['contact'];$query=$_POST['query'];  
- mysqli_query($con,"insert into `query` VALUES('$name','$email','$contact','$query')");
- echo"<script>  alert('Submit Successfully');location.href='index.php';    </script>";   
-  }
-  
-  ?>
   <div class="col-sm-4">
     <div class="well">
-     <h3 style="text-align: center; ">Any Query ?</h3>
-     <hr />
-     <form method="POST">
+      <form method="post">
       <div class="form-group">
-    <label for="name">Name:</label>
-    <input type="text" class="form-control" id="name" name="name" required="" />
-    </div> 
-    <div class="form-group">
-    <label for="email">Email:</label>
-    <input type="email" class="form-control" id="email" name="email" />
+          <label for="usr">Name:</label>
+          <input type="text" class="form-control" name="usr" id="usr">
+       </div>
+       <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" class="form-control" name="email" id="email">
+       </div>
+       <div class="form-group">
+          <label for="contact">Contact:</label>
+          <input type="text" class="form-control" name="contact" id="contact">
+       </div>
+       <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" class="form-control" name="password" id="password">
+       </div>
+       <div class="form-group">
+          <label for="city">City:</label>
+          <select name="city" id="city" class="form-control" >
+          <option value="" > Select City</option>
+          <option value="Meerut" > Meerut</option>
+          <option value="Delhi" > Delhi</option>
+          <option value="Agra" > Agra</option>
+          </select>
+       </div>
+       <button type="submtit" name="submit" class="btn btn-danger">Sign Up</button>
+      </form>
     </div>
-    <div class="form-group">
-    <label for="contact">Contact:</label>
-    <input type="text" class="form-control" id="contact" name="contact" required="" />
-    </div>
-     <div class="form-group">
-    <label for="query">Query:</label>
-    <textarea class="form-control" name="query" id="query" required=""></textarea>
-    </div>       
-    <button type="submit" name="submit" class="btn btn-success">Submit</button>  
-     </form>  
-    </div>
-  
+    
   </div>
 </div>
 <hr>
 </div>
 
 <div class="container text-center">    
-  <h3>Information about car parking</h3>
+  <h3>Latest Courses</h3>
   <br>
   <div class="row">
     <div class="col-sm-3">
-      <img src="image/6.jpg" class="img-responsive" style="width:100%" alt="Image">
-      <p>PRECAUTIONS </p>
+      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+      <p>Current Project</p>
     </div>
     <div class="col-sm-3"> 
-      <img src="image/12.jpg" class="img-responsive" style="width:100%" alt="Image">
-      <p>TIMING </p>    
+      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+      <p>Project 2</p>    
     </div>
     <div class="col-sm-3">
       <div class="well">
@@ -177,32 +183,32 @@ $con=mysqli_connect("localhost","root","","parking");
 </div>
 
 <div class="container text-center">    
-  <h3>FEATURES</h3>
+  <h3>Our Trainers</h3>
   <br>
   <div class="row">
     <div class="col-sm-2">
-      <img src="image/28.jpg" class="img-responsive" style="width:100%" alt="Image">
-      <p>SECURITY</p>
+      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+      <p>Partner 1</p>
     </div>
     <div class="col-sm-2"> 
-      <img src="image/27.jpg" class="img-responsive" style="width:100%" alt="Image">
-      <p>SERVICE</p>    
+      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+      <p>Partner 2</p>    
     </div>
     <div class="col-sm-2"> 
-      <img src="image/18.jpg" class="img-responsive" style="width:100%" alt="Image">
-      <p>PROTECTION</p>
+      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+      <p>Partner 3</p>
     </div>
     <div class="col-sm-2"> 
-      <img src="image/21.jpg" class="img-responsive" style="width:100%" alt="Image">
-      <p>RATES</p>
+      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+      <p>Partner 4</p>
     </div> 
     <div class="col-sm-2"> 
-      <img src="image/22.jpg" class="img-responsive" style="width:100%" alt="Image">
-      <p>ABOUT PARKING AREA</p>
+      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+      <p>Partner 5</p>
     </div>     
     <div class="col-sm-2"> 
-      <img src="image/2.png" class="img-responsive" style="width:100%" alt="Image">
-      <p>MAP OF PARKING AREA</p>
+      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
+      <p>Partner 6</p>
     </div> 
   </div>
 </div><br>
@@ -217,71 +223,6 @@ $con=mysqli_connect("localhost","root","","parking");
 
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
-<?php
-if(isset($_POST['regsubmit']))
-{
-$fname=$_POST['fname'];$lname=$_POST['lname'];  $phonenumber=$_POST['phonenumber']; $email=$_POST['email'];  
- $pwd=$_POST['pwd']; $carnumber=$_POST['carnumber'];$carcolor=$_POST['carcolor'];   
- mysqli_query($con,"insert into `registration` VALUES('$fname','$lname','$phonenumber','$email','$pwd','$carnumber','$carcolor')");
- echo"<script>  alert('Submit Successfully');location.href='index.php';    </script>";   
-    
-    
-}
-?>
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Registration</h4>
-      </div>
-      <div class="modal-body">
-        <p>
-		<form method="POST">
-	<div class="form-group">
-		<label for="name">First name:</label>
-		<input type="text" class="form-control" name="fname" id="name">
-	</div>
-	<div class="form-group">
-		<label for="lname">Last name:</label>
-		<input type="text" class="form-control" name="lname" id="lname">
-	</div>
-	<div class="form-group">
-		<label for="phonenumber">Phone number:</label>
-		<input type="text" class="form-control" id="phonenumber" name="phonenumber">
-	</div>
-	<div class="form-group">
-		<label for="email">Email address:</label>
-		<input type="email" class="form-control" id="email" name="email">
-	</div>
-	<div class="form-group">
-		<label for="pwd">Password:</label>
-		<input type="password" class="form-control" id="pwd" name="pwd">
-	</div>
-    <div class="form-group">
-		<label for="carnumber">Car Number:</label>
-		<input type="text" class="form-control" id="carnumber" name="carnumber">
-	</div>
-    <div class="form-group">
-		<label for="carcolor">Car Color:</label>
-		<input type="text" class="form-control" id="carcolor" name="carcolor">
-	</div>
-	<button type="submit" class="btn btn-default" name="regsubmit">Submit</button>
-	</form>
-		</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button"  class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-
-
-
-<div id="myModal1" class="modal fade" role="dialog">
-  <div class="modal-dialog">
 
     <!-- Modal content-->
     <div class="modal-content">
@@ -290,22 +231,20 @@ $fname=$_POST['fname'];$lname=$_POST['lname'];  $phonenumber=$_POST['phonenumber
         <h4 class="modal-title">Login</h4>
       </div>
       <div class="modal-body">
-        <p>
-		<form method="POST">
-	<div class="form-group">
-		<label for="email">Email address:</label>
-		<input type="email" class="form-control" id="email">
-	</div>
-	<div class="form-group">
-		<label for="pwd">Password:</label>
-		<input type="password" class="form-control" id="pwd">
-	</div>
-	<button type="submit" class="btn btn-default">Submit</button>
-	</form>
-		</p>
+        <form method="post">
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" class="form-control" name="email" id="email">
+       </div>
+       <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" class="form-control" name="password" id="password">
+       </div>
+       <button type="submit" class="form-control">Login</button>
+        </form>
       </div>
       <div class="modal-footer">
-        <button type="button" name="regsubmit" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
 
