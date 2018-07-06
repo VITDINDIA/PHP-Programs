@@ -1,14 +1,28 @@
 <?php
+include('classes/session.php');
 include('classes/database.php');
-$database->connect_database();
 if(isset($_POST['submit']))
 	{
 $database->uname=$_POST['usr'];$database->email=$_POST['email'];	
 $database->password=$_POST['password'];	
 $database->city=$_POST['city'];$database->contact=$_POST['contact'];
-mysqli_query( $database->con,"insert into `users`(`uname`,`contact`,`email`,`password`,`city`) values ('".$database->uname."','".$database->contact."','".$database->email."','".$database->password."','".$database->city."')"); 		
+mysqli_query( $database->con,"insert into `users`(`uname`,`contact`,`email`,`password`,`city`) values 
+('".$database->uname."','".$database->contact."','".$database->email."','".$database->password."','".$database->city."')"); 		
 echo"<script>alert('Registration Successfully');</script>";
 	}
+else if(isset($_POST['login']))
+	{
+$database->email=$_POST['email'];$database->password=$_POST['password'];
+if($database->login_authentication($database->email,$database->password) == 1)
+        {
+$_SESSION['uid']= $database->email;           
+echo"<script>location.href='home.php'</script>";        
+        }
+else 
+        {
+echo"<script>alert('Login Id/Password is invalid');location.href='index.php'</script>";    
+        }	   
+	}    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -240,7 +254,7 @@ echo"<script>alert('Registration Successfully');</script>";
           <label for="password">Password:</label>
           <input type="password" class="form-control" name="password" id="password">
        </div>
-       <button type="submit" class="form-control">Login</button>
+       <button type="submit" name="login" class="form-control">Login</button>
         </form>
       </div>
       <div class="modal-footer">
