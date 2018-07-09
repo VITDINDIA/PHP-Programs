@@ -168,30 +168,19 @@ echo"<script>alert('Login Id/Password is invalid');location.href='index.php'</sc
   <h3>Latest Courses</h3>
   <br>
   <div class="row">
+  <?php
+  $res=$database->get_all_courses();
+  while($fetch=mysqli_fetch_array($res))
+  {
+    $name=$fetch[0].".jpg";
+  ?>
     <div class="col-sm-3">
-      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-      <p>Current Project</p>
+      <img src="courses/<?php    print $name;   ?>" class="img-responsive" style="width:100%" alt="Image">
+      <p><?php  echo"$fetch[0] | $fetch[1] Rs/ Only | $fetch[2] Weeks | $fetch[4] ";    ?></p>
     </div>
-    <div class="col-sm-3"> 
-      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-      <p>Project 2</p>    
-    </div>
-    <div class="col-sm-3">
-      <div class="well">
-       <p>Some text..</p>
-      </div>
-      <div class="well">
-       <p>Some text..</p>
-      </div>
-    </div>
-    <div class="col-sm-3">
-      <div class="well">
-       <p>Some text..</p>
-      </div>
-      <div class="well">
-       <p>Some text..</p>
-      </div>
-    </div>  
+  <?php
+  }
+  ?>      
   </div>
   <hr>
 </div>
@@ -200,30 +189,18 @@ echo"<script>alert('Login Id/Password is invalid');location.href='index.php'</sc
   <h3>Our Trainers</h3>
   <br>
   <div class="row">
+    <?php
+  $res=$database->get_all_trainers();
+  while($fetch=mysqli_fetch_array($res))
+      {
+      ?>
     <div class="col-sm-2">
       <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-      <p>Partner 1</p>
+      <p><?php  echo"$fetch[1] | $fetch[4]";    ?></p>
     </div>
-    <div class="col-sm-2"> 
-      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-      <p>Partner 2</p>    
-    </div>
-    <div class="col-sm-2"> 
-      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-      <p>Partner 3</p>
-    </div>
-    <div class="col-sm-2"> 
-      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-      <p>Partner 4</p>
-    </div> 
-    <div class="col-sm-2"> 
-      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-      <p>Partner 5</p>
-    </div>     
-    <div class="col-sm-2"> 
-      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-      <p>Partner 6</p>
-    </div> 
+  <?php
+       } 
+  ?>  
   </div>
 </div><br>
 

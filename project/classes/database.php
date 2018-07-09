@@ -22,7 +22,18 @@ public function get_all_data($email)
         {
 $res=mysqli_query( $this->con,"SELECT * FROM `users` WHERE `email`='$email'");    
 return mysqli_fetch_array($res);       
-        }     
+        } 
+public function get_all_courses()
+        {
+$res=mysqli_query( $this->con, "SELECT * FROM `view_courses_trainers` ");    
+return $res  ;   
+        }         
+ public function get_all_trainers()
+        {
+$res=mysqli_query( $this->con,"SELECT * FROM `trainers` ");    
+return $res  ;   
+        }         
+            
          }
 
 $database= new database();
