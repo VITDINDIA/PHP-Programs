@@ -1,6 +1,8 @@
 <?php
 include('classes/session.php');
+$session->check_login();
 include('classes/database.php'); 
+$data=$database->get_name($_SESSION['uid']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,7 +52,8 @@ include('classes/database.php');
         <li><a href="inbox.php">Inbox</a></li>
       </ul>
      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Hi <?php print  $database->get_name($_SESSION['uid'])[0];      ?></a></li>
+        <li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span> LogOut</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Hi <?php print  $data[0];      ?></a></li>
       </ul>
     </div>
   </div>
@@ -61,7 +64,7 @@ include('classes/database.php');
   <div class="col-sm-12">
     <div class="well">
     <h1>Hi </h1>
-      <?php print  $database->get_name($_SESSION['uid'])[0];      ?>
+      <?php print  $data[0];      ?>
     </div>
     
   </div>

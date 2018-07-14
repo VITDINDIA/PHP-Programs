@@ -22,7 +22,15 @@ public function get_all_data($email)
         {
 $res=mysqli_query( $this->con,"SELECT * FROM `users` WHERE `email`='$email'");    
 return mysqli_fetch_array($res);       
-        } 
+        }
+public function update_user_profile($uname,$contact,$password,$city,$email)
+        {
+$res=mysqli_query( $this->con,"update `users` set `uname`='$uname',`contact`='$contact',`password`='$password',`city`='$city' WHERE `email`='$email'");         
+        }
+public function delete_profile($email)
+        {
+$res=mysqli_query( $this->con,"delete from `users` WHERE `email`='$email'");         
+        }                    
 public function get_all_courses()
         {
 $res=mysqli_query( $this->con, "SELECT * FROM `view_courses_trainers` ");    

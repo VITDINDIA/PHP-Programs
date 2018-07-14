@@ -1,9 +1,9 @@
 <?php
 include('classes/session.php');
 $session->check_login();
-include('classes/database.php'); 
+include('classes/database.php');
 $data=$database->get_name($_SESSION['uid']);
-$alldata=$database->get_all_data($_SESSION['uid']);
+$alldata=$database->get_all_data($_SESSION['uid']); 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,8 +53,9 @@ $alldata=$database->get_all_data($_SESSION['uid']);
         <li ><a href="inbox.php">Inbox</a></li>
       </ul>
      <ul class="nav navbar-nav navbar-right">
-        <li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span> LogOut</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Hi <?php print  $data[0];      ?></a></li>
+     <li><a href="logout.php"><span class="glyphicon glyphicon-log-out"></span> LogOut</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Hi 
+        <?php print  $data[0];       ?></a></li>
       </ul>
     </div>
   </div>
@@ -64,7 +65,7 @@ $alldata=$database->get_all_data($_SESSION['uid']);
 <div class="row">
   <div class="col-sm-12">
     <div class="well">
-    <h1>Profile </h1>
+    <h1>Edit Profile </h1>
       <table class="table">
     <thead>
       <tr>
@@ -73,18 +74,41 @@ $alldata=$database->get_all_data($_SESSION['uid']);
         <th>Passowrd</th>
         <th>City</th>
         <th>Email</th>
-        <th>Edit</th>
+        <th>&nbsp;</th>
+        <th>&nbsp;</th>
       </tr>
     </thead>
     <tbody> 
-       
+     <?php
+     if(isset($_POST['update']))
+     {
+      $uname=$_POST['uname'];$contact=$_POST['contact'];$password=$_POST['password'];
+      $city=$_POST['city'];$email=$_POST['email'];
+     $database->update_user_profile($uname,$contact,$password,$city,$email);
+     echo"<script>location.href='profile.php';</script>";  
+     } else if(isset($_POST['delete']))
+     {
+      $email=$_POST['email'];  
+      $database->delete_profile($email); 
+      echo"<script>location.href='index.php';</script>"; 
+     }
+     
+     ?>  
       <tr class="success">
-        <td><?php print $alldata[1]; ?> </td>
-        <td><?php print $alldata[2]; ?> </td>
-        <td><?php print $alldata[4]; ?> </td>
-        <td><?php print $alldata[5]; ?> </td>
-        <td><?php print $alldata[3]; ?> </td>
-        <td><a href="editprofile.php">Click</a></td>
+      <form method="POST">
+        <td><input type="text" name="uname" class="form-control" 
+        value="<?php print $alldata[1]; ?>" /> </td>
+        <td><input type="text" name="contact" class="form-control" 
+        value="<?php print $alldata[2]; ?>" /></td>
+        <td><input type="text" name="password" class="form-control" 
+        value="<?php print $alldata[4]; ?> " /></td>
+        <td><input type="text" name="city" class="form-control" 
+        value="<?php print $alldata[5]; ?> " /></td>
+        <td><input type="text" name="email" readonly="" class="form-control" 
+        value="<?php print $alldata[3]; ?>" /></td>
+        <td><button type="submit" name="update" class="btn btn-danger">Update Profile</button></td>
+        <td><button type="submit" name="delete" onclick="window.confirm('Are Your Sure?')" class="btn btn-danger">Delete Account</button></td>
+        </form>
       </tr>
       
     </tbody>
